@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Profesional | Henya Chailyn Nuñez Severino</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa-principal: #ff9ec0;
+            --rosa-claro: #ffd1dc;
+            --rosa-oscuro: #ff6b9d;
+            --lavanda: #d8bfd8;
+            --lila: #e6e6fa;
+            --morado: #9370db;
+            --morado-oscuro: #7b5cb7;
+            --blanco: #ffffff;
+            --gris-claro: #f8f9fa;
+            --texto-oscuro: #333333;
+            --sombra: rgba(0, 0, 0, 0.1);
+            --gradiente-holografico: linear-gradient(45deg, 
+                #ff9ec0, #ffd1dc, #d8bfd8, #e6e6fa, #ff9ec0);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--gris-claro);
+            color: var(--texto-oscuro);
+            overflow-x: hidden;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(255, 209, 220, 0.3), transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(230, 230, 250, 0.3), transparent 25%);
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            padding-top: 80px;
+        }
+        
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px var(--sombra);
+            padding: 1rem 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rosa-oscuro);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--texto-oscuro);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--rosa-principal);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--rosa-oscuro);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: var(--gradiente-holografico);
+            background-size: 400% 400%;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: holograma 8s ease infinite;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--morado-oscuro);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--rosa-principal);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 158, 192, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: var(--rosa-oscuro);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--rosa-principal);
+            color: var(--rosa-principal);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 158, 192, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .btn-blog {
+            background: linear-gradient(135deg, var(--morado), var(--rosa-oscuro));
+            color: white;
+            box-shadow: 0 4px 15px rgba(147, 112, 219, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn-blog::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--rosa-oscuro), var(--morado));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-blog:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(147, 112, 219, 0.6);
+            animation: none;
+        }
+        
+        .btn-blog:hover::before {
+            opacity: 1;
+        }
+        
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            animation: flotar 4s ease-in-out infinite;
+        }
+        
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--gradiente-holografico);
+            background-size: 400% 400%;
+            border-radius: 50%;
+            z-index: -1;
+            animation: holograma 8s ease infinite, girar 20s linear infinite;
+            opacity: 0.8;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+        
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--rosa-oscuro);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--rosa-principal);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--texto-oscuro);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--morado);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--rosa-principal);
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+        
+        .info-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill {
+            background: rgba(255, 158, 192, 0.15);
+            color: var(--rosa-oscuro);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 158, 192, 0.25);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--rosa-principal);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--blanco);
+            border: 3px solid var(--rosa-principal);
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--rosa-oscuro);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--morado);
+        }
+        
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--texto-oscuro);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Sección de portafolio modificada */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(147, 112, 219, 0.85), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-title {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .portfolio-description {
+            color: var(--rosa-claro);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .portfolio-category {
+            color: var(--lila);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 158, 192, 0.1);
+        }
+        
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -40px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(147, 112, 219, 0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            color: var(--morado);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
+            color: var(--rosa-principal);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rosa-principal), var(--morado));
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(147, 112, 219, 0.3);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
+        }
+        
+        footer {
+            background: var(--morado);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @keyframes holograma {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(147, 112, 219, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(147, 112, 219, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(147, 112, 219, 0); }
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--rosa-principal);
+            opacity: 0.3;
+            animation: particle-float linear infinite;
+        }
+        
+        @keyframes particle-float {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                order: -1;
+                margin-bottom: 3rem;
+            }
+            
+            .about-text {
+                order: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                padding: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .portfolio-item {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .portfolio-item {
+                height: 300px;
+            }
+            
+            .portfolio-title {
+                font-size: 1.5rem;
+            }
+            
+            .portfolio-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-sparkles"></i>
+                Henya Nuñez
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Ingeniera en Sistemas Computacionales</h1>
+                <p>Implemento Ideas tecnológicas para la solución de problemas</p>
+                <div class="hero-buttons">
+                    <a href="#portafolio" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contacto" class="btn btn-secondary">Contáctame</a>
+                    <a href="https://sites.google.com/view/blognnnn/p%C3%A1gina-principal" target="_blank" class="btn btn-blog">
+                        <i class="fas fa-book"></i> Ver Blog
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <img src="foto.jpeg" alt="Henya Nuñez" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Sobre Mí / Hoja de Vida -->
+    <section id="sobre-mi" class="about">
+        <div class="section-header">
+            <h2>Sobre Mí</h2>
+            <p>
+                Mi nombre es Henya Núñez y actualmente soy estudiante de Ingeniería en Sistemas Computacionales. 
+                Anteriormente me formé en el área de Turismo y participé en el Programa de Inglés por Inmersión, 
+                donde desarrollé habilidades en atención al cliente, comunicación en inglés y organización de actividades. 
+                Me considero una persona responsable, adaptable y con muchas ganas de seguir creciendo profesionalmente, 
+                combinando la tecnología con mis conocimientos previos en idiomas y turismo.
+            </p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Experiencia Profesional</h3>
+                <p>------------</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025 - Presente</div>
+                        <div class="timeline-title">Obrera</div>
+                        <div class="timeline-subtitle">Plantar hojas</div>
+                        <p>Lidero el diseño de la siembra de plantas que luego son enviadas al extranjero.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2023</div>
+                        <div class="timeline-title">Contable</div>
+                        <div class="timeline-subtitle">Contabilidad en Bancas</div>
+                        <p>Implementé mi habilidad con los números para clientes nacionales utilizando paquetes de office (Excel).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - 2024</div>
+                        <div class="timeline-title">Profesora</div>
+                        <div class="timeline-subtitle">Clases después de Pandemia</div>
+                        <p>Impartí clases a estudiantes de secundaria, centrándome en la experiencia de ellos mismos luego de lo que habían vivido en la pandemia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text">
+                <h3>Educación y Habilidades</h3>
+                <p>Formación académica y habilidades técnicas que me permiten abordar proyectos con creatividad y eficiencia.</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="info-text">
+                            <h4>Estudiante de Servicios Turísticos</h4>
+                            <p>2018-2021</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="info-text">
+                            <h4>Inglés por Inmersión</h4>
+                            <p>2021</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-certificate"></i>
+                        <div class="info-text">
+                            <h4>Actitud positiva:</h4>
+                            <p>Mantengo una mentalidad optimista frente a los retos.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-certificate"></i>
+                        <div class="info-text">
+                            <h4>Creatividad:</h4>
+                            <p>Aporto ideas nuevas y originales.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 2rem;">Habilidades Técnicas</h4>
+                <div class="skills">
+                    <div class="skill">Conocimientos sobre destinos turísticos</div>
+                    <div class="skill">Nivel intermedio/avanzado de inglés</div>
+                    <div class="skill">Redacción de textos en inglés</div>
+                    <div class="skill">Conocimiento de cultura y patrimonio</div>
+                    <div class="skill">Preparación de guías turísticos</div>
+                    <div class="skill">Participación en debates en inglés</div>
+                    <div class="skill">Microsoft Office</div>
+                    <div class="skill">Comunicación efectiva</div>
+                    <div class="skill">Organización de eventos</div>
+                    <div class="skill">Resolución de problemas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Portafolio modificada -->
+    <section id="portafolio" class="portfolio">
+        <div class="section-header">
+            <h2>Portafolio</h2>
+            <p>Mi proyecto destacado</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" style="background-image: url('inventario.jpg')">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Sistema de Agenda de Inventario para Tienda Comercial</h3>
+                    <p class="portfolio-description">
+                        Desarrollé un programa informático como parte de mis estudios en Ingeniería en Sistemas Computacionales, 
+                        cuyo propósito era facilitar la gestión de productos en una tienda. El sistema permite agendar, 
+                        registrar y controlar el inventario, mostrando de forma organizada los productos. 
+                        Implementa funciones avanzadas de búsqueda y filtrado, generación de reportes en tiempo real, 
+                        y alertas para productos con bajo stock. La solución está desarrollada con tecnologías modernas 
+                        y ofrece una interfaz intuitiva que simplifica las operaciones diarias de inventario.
+                    </p>
+                    <p class="portfolio-category">Desarrollo de Software - Gestión de Inventarios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Contacto simplificada -->
+    <section id="contacto" class="contact">
+        <div class="section-header">
+            <h2>Contacto</h2>
+            <p>¿Interesado en trabajar conmigo? ¡Contáctame!</p>
+        </div>
+        <div class="contact-info">
+            <h3>Información de Contacto</h3>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>Henyaseverino@gmail.com</div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>+1(809)-484-3149</div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>República Dominicana</div>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/share/1akaHyH8Np/?mibextid=wwXIfr" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/henyachailyn?igsh=ODY1ZndpajAyb3o=" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-sparkles"></i> Henya Nuñez
+            </div>
+            <p>Transformando ideas en experiencias digitales extraordinarias</p>
+            <div class="copyright">
+                &copy; 2023 Henya Nuñez. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Crear efecto de partículas holográficas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición inicial aleatoria
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100 + 100;
+                particle.style.left = `${startX}%`;
+                particle.style.top = `${startY}%`;
+                
+                // Color aleatorio
+                const colors = ['#ff9ec0', '#ffd1dc', '#d8bfd8', '#e6e6fa', '#9370db'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                
+                // Duración de animación aleatoria
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de aparición al hacer scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observar secciones
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+        
+        // Añadir clase visible cuando se observa
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                if (section.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+            
+            // Crear partículas
+            createParticles();
+        });
+        
+        // Actualizar al hacer scroll
+        window.addEventListener('scroll', function() {
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight * 0.8) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Efecto holográfico dinámico para la imagen de perfil
+        const profileContainer = document.querySelector('.profile-container');
+        document.addEventListener('mousemove', (e) => {
+            if (!profileContainer) return;
+            
+            const { clientX, clientY } = e;
+            const { left, top, width, height } = profileContainer.getBoundingClientRect();
+            const centerX = left + width / 2;
+            const centerY = top + height / 2;
+            
+            const angleX = (clientY - centerY) / 20;
+            const angleY = (centerX - clientX) / 20;
+            
+            profileContainer.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            if (profileContainer) {
+                profileContainer.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            }
+        });
+    </script>
+</body>
+</html>
