@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Mágico | Henya Chailyn Nuñez Severino</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa-principal: #ff9ec0;
+            --rosa-claro: #ffd1dc;
+            --rosa-oscuro: #ff6b9d;
+            --lavanda: #d8bfd8;
+            --lila: #e6e6fa;
+            --morado: #9370db;
+            --morado-oscuro: #7b5cb7;
+            --blanco: #ffffff;
+            --gris-claro: #f8f9fa;
+            --texto-oscuro: #333333;
+            --sombra: rgba(0, 0, 0, 0.1);
+            --gradiente-holografico: linear-gradient(45deg, 
+                #ff9ec0, #ffd1dc, #d8bfd8, #e6e6fa, #ff9ec0);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--gris-claro);
+            color: var(--texto-oscuro);
+            overflow-x: hidden;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(255, 209, 220, 0.3), transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(230, 230, 250, 0.3), transparent 25%);
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            padding-top: 80px;
+        }
+        
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px var(--sombra);
+            padding: 1rem 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rosa-oscuro);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--texto-oscuro);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--rosa-principal);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--rosa-oscuro);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .game-container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: var(--gradiente-holografico);
+            background-size: 400% 400%;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: holograma 8s ease infinite;
+            z-index: -1;
+        }
+        
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .game-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--morado-oscuro);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .game-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .game-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-box::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 158, 192, 0.1);
+        }
+        
+        .game-box::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -40px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(147, 112, 219, 0.05);
+        }
+        
+        .game-instructions {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .attempts-counter {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--morado);
+            font-weight: 600;
+        }
+        
+        .input-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .number-input {
+            width: 100px;
+            height: 60px;
+            font-size: 1.8rem;
+            text-align: center;
+            border: 3px solid var(--rosa-principal);
+            border-radius: 15px;
+            margin-right: 1rem;
+            color: var(--morado-oscuro);
+            font-weight: bold;
+        }
+        
+        .number-input:focus {
+            outline: none;
+            border-color: var(--morado);
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
+        }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--rosa-principal);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 158, 192, 0.4);
+            height: 60px;
+            padding: 0 2rem;
+        }
+        
+        .btn-primary:hover {
+            background: var(--rosa-oscuro);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+        }
+        
+        .btn-reset {
+            background: var(--morado);
+            color: white;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(147, 112, 219, 0.4);
+        }
+        
+        .btn-reset:hover {
+            background: var(--morado-oscuro);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(123, 92, 183, 0.5);
+        }
+        
+        .result-message {
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .emoji {
+            font-size: 2.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .gift-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--rosa-principal), var(--morado));
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.3);
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .gift-box.show {
+            transform: scale(1);
+        }
+        
+        .gift-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gift-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .gift-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: flotar 3s ease-in-out infinite;
+        }
+        
+        @keyframes holograma {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--rosa-principal);
+            opacity: 0.3;
+            animation: particle-float linear infinite;
+        }
+        
+        @keyframes particle-float {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 1rem;
+            }
+            
+            .game-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .game-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .number-input {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-sparkles"></i>
+                Número Mágico
+            </a>
+            <ul class="nav-links">
+                <li><a href="#juego">Juego</a></li>
+                <li><a href="#instrucciones">Instrucciones</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Juego del Número Mágico -->
+    <section id="juego" class="game-container">
+        <div class="game-header">
+            <h1>Número Mágico</h1>
+            <p>¡Adivina el número secreto y gana un premio especial!</p>
+        </div>
+        
+        <div class="game-box">
+            <div class="game-instructions">
+                <p>Estoy pensando en un número mágico entre 1 y 20. Tienes 3 intentos para adivinarlo.</p>
+            </div>
+            
+            <div class="attempts-counter" id="attempts">
+                Intentos restantes: 3
+            </div>
+            
+            <div class="input-group">
+                <input type="number" id="guess" class="number-input" min="1" max="20" placeholder="?">
+                <button id="guess-btn" class="btn btn-primary">Adivinar</button>
+            </div>
+            
+            <div class="result-message" id="result">
+                <!-- Mensaje de resultado aparecerá aquí -->
+            </div>
+            
+            <div class="gift-box" id="gift">
+                <div class="gift-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3>¡Lo has conseguido!</h3>
+                <p>Felicidades, has adivinado el número mágico. ¡Eres un verdadero mago de los números!</p>
+            </div>
+            
+            <button id="reset-btn" class="btn btn-reset">Jugar de nuevo</button>
+        </div>
+    </section>
+    
+              
+    
+    <script>
+        // Crear efecto de partículas holográficas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición inicial aleatoria
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100 + 100;
+                particle.style.left = `${startX}%`;
+                particle.style.top = `${startY}%`;
+                
+                // Color aleatorio
+                const colors = ['#ff9ec0', '#ffd1dc', '#d8bfd8', '#e6e6fa', '#9370db'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                
+                // Duración de animación aleatoria
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Lógica del juego
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const secretNumber = 11;
+            let attempts = 3;
+            const guessInput = document.getElementById('guess');
+            const guessBtn = document.getElementById('guess-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const resultDiv = document.getElementById('result');
+            const attemptsDiv = document.getElementById('attempts');
+            const giftBox = document.getElementById('gift');
+            
+            // Función para verificar el intento
+            function checkGuess() {
+                const userGuess = parseInt(guessInput.value);
+                
+                if (isNaN(userGuess) || userGuess < 1 || userGuess > 20) {
+                    resultDiv.innerHTML = 'Por favor, ingresa un número entre 1 y 20';
+                    return;
+                }
+                
+                attempts--;
+                attemptsDiv.textContent = `Intentos restantes: ${attempts}`;
+                
+                if (userGuess === secretNumber) {
+                    // Ganó
+                    resultDiv.innerHTML = '<span style="color: var(--morado-oscuro); font-weight: bold;">¡Correcto! ¡Has adivinado el número mágico!</span> <div class="emoji">🎉</div>';
+                    guessInput.disabled = true;
+                    guessBtn.disabled = true;
+                    giftBox.classList.add('show');
+                } else if (attempts === 0) {
+                    // Perdió
+                    resultDiv.innerHTML = `<span style="color: var(--rosa-oscuro);">El número mágico era ${secretNumber}. Gracias por intentarlo.</span> <div class="emoji">😢</div>`;
+                    guessInput.disabled = true;
+                    guessBtn.disabled = true;
+                } else {
+                    // Pista
+                    const hint = userGuess < secretNumber ? 'mayor' : 'menor';
+                    resultDiv.innerHTML = `El número mágico es ${hint} que ${userGuess}. Intenta de nuevo. <div class="emoji">🤔</div>`;
+                }
+                
+                guessInput.value = '';
+                guessInput.focus();
+            }
+            
+            // Función para reiniciar el juego
+            function resetGame() {
+                attempts = 3;
+                attemptsDiv.textContent = `Intentos restantes: ${attempts}`;
+                resultDiv.innerHTML = '';
+                guessInput.disabled = false;
+                guessBtn.disabled = false;
+                guessInput.value = '';
+                guessInput.focus();
+                giftBox.classList.remove('show');
+            }
+            
+            // Event listeners
+            guessBtn.addEventListener('click', checkGuess);
+            resetBtn.addEventListener('click', resetGame);
+            
+            guessInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkGuess();
+                }
+            });
+            
+            // Navegación suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
